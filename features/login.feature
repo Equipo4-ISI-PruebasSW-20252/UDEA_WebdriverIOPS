@@ -1,4 +1,7 @@
 Feature: Para Bank Login Feature
+  Scenario: Login button should be disabled when fields are empty
+    Given I am on the login page
+    Then the login button should be disabled
 
   Scenario Outline: As a user, I can log into the Parabank Accounts Service Page
     Given I am on the login page
