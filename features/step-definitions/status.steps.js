@@ -23,3 +23,18 @@ Then(/^I see all my accounts in a table$/, async () => {
 
     expect(rows.length).toBeGreaterThan(0);
 });
+
+Then(/^I see the balance of each account$/, async () => {
+    await pages.status.accountsTable.waitForDisplayed({ timeout: 5000 });
+
+    const balances = await pages.status.balanceColumn;
+
+    expect(balances.length).toBeGreaterThan(0);
+
+    for (const balanceElement of balances) {
+        const text = await balanceElement.getText();
+        console.log('Balance encontrado:', text);
+        const isValid = /\d+(\.\d{1,2})?/.test(text);
+        expect(isValid).toBeTruthy();
+    }
+});
