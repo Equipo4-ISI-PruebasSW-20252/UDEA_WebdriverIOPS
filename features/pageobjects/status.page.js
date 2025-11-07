@@ -12,10 +12,13 @@ class StatusPage extends Page {
         return $('#accountTable');
     }
 
-    get accountsColumn() {
-        return $$('#accountTable tbody tr td:first-child');
+    get rows() {
+        return $$('#accountTable tbody tr');
     }
 
+    get accountsColumn() {
+        return $$('#accountTable tbody tr td:first-child a');
+    }
 
     get balanceColumn() {
         return $$('#accountTable tbody tr td:nth-child(2)');

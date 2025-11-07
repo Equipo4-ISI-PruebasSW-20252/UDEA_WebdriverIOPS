@@ -8,6 +8,9 @@ const pages = {
 };
 
 Then(/^I see all my accounts in a table$/, async () => {
-    const accounts = await pages.status.accountsColumn;
-    expect(accounts.length).toBeGreaterThan(0);
+    await pages.status.accountsTable.waitForDisplayed({ timeout: 5000 });
+    const rows = await pages.status.rows;
+    console.log('Número de filas:', rows.length);
+
+    expect(rows.length).toBeGreaterThan(0);
 })
