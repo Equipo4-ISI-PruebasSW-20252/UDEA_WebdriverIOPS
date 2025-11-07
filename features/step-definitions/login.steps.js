@@ -32,3 +32,7 @@ Then(/^the login button should be disabled$/, async () => {
   const isEnabled = await LoginPage.btnSubmit.isEnabled();
   await expect(isEnabled).toBe(false);
 });
+
+Given(/^I am logged in correctly$/, async () => {
+  await LoginPage.login('john', 'demo');
+});
