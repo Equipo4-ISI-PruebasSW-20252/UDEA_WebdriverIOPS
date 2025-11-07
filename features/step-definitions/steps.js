@@ -26,3 +26,9 @@ Then(/^I should see a text saying (.*)$/, async (message) => {
     await expect($('.title')).toHaveTextContaining(message);
   }
 });
+
+//Disabled Log In button
+Then(/^the login button should be disabled$/, async () => {
+  const isEnabled = await LoginPage.btnLogin.isEnabled();
+  await expect(isEnabled).toBe(false);
+});
