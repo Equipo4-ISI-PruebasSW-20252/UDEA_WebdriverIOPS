@@ -29,6 +29,6 @@ Then(/^I should see a text saying (.*)$/, async (message) => {
 
 //Disabled Log In button
 Then(/^the login button should be disabled$/, async () => {
-  const isEnabled = await LoginPage.btnLogin.isEnabled();
+  const isEnabled = await LoginPage.btnSubmit.isEnabled();
   await expect(isEnabled).toBe(false);
 });
