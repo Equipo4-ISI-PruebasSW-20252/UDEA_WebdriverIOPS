@@ -55,10 +55,12 @@ Then(/^I can click over every account$/, async () => {
 
   const rows = await pages.status.rows;
 
-  for (const row in rows) {
-    let clickable = await row.isClickable();
-    expect(clickable).toBeTruthy();
-  }
+  await Promise.all(
+    rows.map(async (row) => {
+      const clickable = await row.isClickable();
+      expect(clickable).toBeTruthy();
+    })
+  );
 });
 
 Then(/^I can see more details about them$/, async () => {
