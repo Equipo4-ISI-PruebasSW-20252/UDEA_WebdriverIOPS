@@ -1,4 +1,4 @@
-import { Given } from "@wdio/cucumber-framework";
+import { Given, Then } from "@wdio/cucumber-framework";
 import pages from "../pageobjects/pages.js";
 
 Given(/^I am on the (\w+) page$/, async (page) => {
