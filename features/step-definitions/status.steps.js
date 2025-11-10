@@ -87,8 +87,6 @@ When(/^I click on a random account$/, async () => {
 
   await randomAccount.waitForClickable({ timeout: 5000 });
   await randomAccount.click();
-
-  await browser.back();
 });
 
 When(/^I click on 2 random accounts$/, async () => {
