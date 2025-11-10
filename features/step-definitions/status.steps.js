@@ -1,4 +1,4 @@
-import { Then } from "@wdio/cucumber-framework";
+import { Then, When } from "@wdio/cucumber-framework";
 
 import pages from "../pageobjects/pages.js";
 
@@ -61,9 +61,11 @@ Then(/^I can click over every account$/, async () => {
       expect(clickable).toBeTruthy();
     })
   );
+
+  await rows[0].click();
 });
 
-Then(/^I can see more details about them$/, async () => {
+When(/^I click on a random account$/, async () => {
   await pages.status.accountsTable.waitForDisplayed({ timeout: 5000 });
 
   await browser.waitUntil(
@@ -79,8 +81,8 @@ Then(/^I can see more details about them$/, async () => {
 
   const rows = await pages.status.rows;
 
-  for (let row in rows) {
-    await row.click();
-    expect();
-  }
+  const randomIndex = Math.floor(Math.random() * rows.length);
+  const randomRow = rows[randomIndex];
+
+  await randomRow.click();
 });
