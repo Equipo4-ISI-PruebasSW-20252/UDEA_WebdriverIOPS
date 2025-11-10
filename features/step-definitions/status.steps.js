@@ -66,29 +66,19 @@ Then(/^I can click over every account$/, async () => {
 });
 
 When(/^I click on a random account$/, async () => {
-  await pages.status.accountsTable.waitForDisplayed({ timeout: 5000 });
+  const accountsTable = await $("#accountTable");
+  await accountsTable.waitForDisplayed({ timeout: 5000 });
 
-  await browser.waitUntil(
-    async () => {
-      const rows = await pages.status.rows;
-      return rows.length > 0;
-    },
-    {
-      timeout: 5000,
-      timeoutMsg: "No se encontraron filas en la tabla de cuentas",
-    }
-  );
+  const accountLinks = await accountsTable.$$(`tbody tr td:first-child a`);
 
-  const rows = await pages.status.rows;
+  expect(accountLinks.length).toBeGreaterThan(0);
 
-  const randomIndex = Math.floor(Math.random() * rows.length);
-  const randomRow = rows[randomIndex];
+  const randomIndex = Math.floor(Math.random() * accountLinks.length);
+  const randomAccount = accountLinks[randomIndex];
 
-  const accountLink = await randomRow.$("td a");
+  await randomAccount.waitForClickable({ timeout: 5000 });
+  const accountText = await randomAccount.getText();
+  await randomAccount.click();
 
-  await accountLink.waitForClickable({ timeout: 5000 });
-  await accountLink.click();
-
-  const accountText = await accountLink.getText();
   console.log(`Clicked on account: ${accountText}`);
 });
