@@ -11,7 +11,3 @@ Then(/^the login button should be disabled$/, async () => {
   const isEnabled = await pages.login.btnSubmit.isEnabled();
   await expect(isEnabled).toBe(false);
 });
-
-Given(/^I am logged in correctly$/, async () => {
-  await pages.login.login("john", "demo");
-});

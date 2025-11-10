@@ -8,7 +8,7 @@ class LoginPage extends Page {
    * define selectors using getter methods
    */
   get inputUsername() {
-    return $('//input[@name="username"]');
+    return $("#loginPanel > form > div:nth-child(2) > input");
   }
 
   get inputPassword() {
