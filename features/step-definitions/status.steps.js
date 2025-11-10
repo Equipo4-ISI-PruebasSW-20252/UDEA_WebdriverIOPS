@@ -121,13 +121,13 @@ When(/^I click on 2 random accounts$/, async () => {
   await randomAccount.waitForClickable({ timeout: 5000 });
   await randomAccount.click();
 
-  account1 = pages.account.accountDetails();
+  account1 = pages.account.accountDetails;
   await browser.back();
 
   await otherRandomAccount.waitForClickable({ timeout: 5000 });
   await OtherRandomAccount.click();
 
-  account2 = pages.account.accountDetails();
+  account2 = pages.account.accountDetails;
   await browser.back();
 });
 
