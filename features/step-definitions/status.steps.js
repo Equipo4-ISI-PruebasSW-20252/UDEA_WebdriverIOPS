@@ -2,7 +2,8 @@ import { Then, When } from "@wdio/cucumber-framework";
 
 import pages from "../pageobjects/pages.js";
 
-let rightPanel = "";
+let account1 = "";
+let account2 = "";
 
 Then(/^I see all my accounts in a table$/, async () => {
   await pages.status.accountsTable.waitForDisplayed({ timeout: 5000 });
@@ -85,8 +86,52 @@ When(/^I click on a random account$/, async () => {
   const randomAccount = accounts[randomIndex];
 
   await randomAccount.waitForClickable({ timeout: 5000 });
-  const accountText = await randomAccount.getText();
   await randomAccount.click();
 
-  console.log(`Clicked on account: ${accountText}`);
+  await browser.back();
+});
+
+When(/^I click on 2 random accounts$/, async () => {
+  await pages.status.accountsTable.waitForDisplayed({ timeout: 5000 });
+
+  await browser.waitUntil(
+    async () => {
+      const accounts = await pages.status.accountsColumn;
+      return accounts.length > 0;
+    },
+    {
+      timeout: 5000,
+      timeoutMsg: "No se encontraron cuentas en la tabla",
+    }
+  );
+
+  const accounts = await pages.status.accountsColumn;
+
+  const randomIndex = Math.floor(Math.random() * accounts.length);
+  const randomAccount = accounts[randomIndex];
+
+  const otherRandomIndex = Math.floor(Math.random() * accounts.length);
+
+  while (randomIndex === otherRandomIndex) {
+    otherRandomIndex = Math.floor(Math.random() * accounts.length);
+  }
+
+  const otherRandomAccount = accounts[otherRandomIndex];
+
+  await randomAccount.waitForClickable({ timeout: 5000 });
+  await randomAccount.click();
+
+  account1 = pages.account.accountDetails();
+  await browser.back();
+
+  await otherRandomAccount.waitForClickable({ timeout: 5000 });
+  await OtherRandomAccount.click();
+
+  account2 = pages.account.accountDetails();
+  await browser.back();
+});
+
+Then(/^I should have seen different information$/, async () => {
+  let sameInformation = await account1.isEqual(account2);
+  await expect(sameInformation).not.toBeTruthy();
 });
