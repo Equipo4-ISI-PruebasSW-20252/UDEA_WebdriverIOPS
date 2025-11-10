@@ -66,15 +66,23 @@ Then(/^I can click over every account$/, async () => {
 });
 
 When(/^I click on a random account$/, async () => {
-  const accountsTable = await $("#accountTable");
-  await accountsTable.waitForDisplayed({ timeout: 5000 });
+  await pages.status.accountsTable.waitForDisplayed({ timeout: 5000 });
 
-  const accountLinks = await accountsTable.$$(`tbody tr td:first-child a`);
+  await browser.waitUntil(
+    async () => {
+      const accounts = await pages.status.accountsColumn;
+      return accounts.length > 0;
+    },
+    {
+      timeout: 5000,
+      timeoutMsg: "No se encontraron cuentas en la tabla",
+    }
+  );
 
-  expect(accountLinks.length).toBeGreaterThan(0);
+  const accounts = await pages.status.accountsColumn;
 
-  const randomIndex = Math.floor(Math.random() * accountLinks.length);
-  const randomAccount = accountLinks[randomIndex];
+  const randomIndex = Math.floor(Math.random() * accounts.length);
+  const randomAccount = accounts[randomIndex];
 
   await randomAccount.waitForClickable({ timeout: 5000 });
   const accountText = await randomAccount.getText();
