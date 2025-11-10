@@ -84,5 +84,11 @@ When(/^I click on a random account$/, async () => {
   const randomIndex = Math.floor(Math.random() * rows.length);
   const randomRow = rows[randomIndex];
 
-  await randomRow.click();
+  const accountLink = await randomRow.$("td a");
+
+  await accountLink.waitForClickable({ timeout: 5000 });
+  await accountLink.click();
+
+  const accountText = await accountLink.getText();
+  console.log(`Clicked on account: ${accountText}`);
 });
