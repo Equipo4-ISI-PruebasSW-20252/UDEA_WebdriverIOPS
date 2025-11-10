@@ -123,7 +123,7 @@ When(/^I click on 2 random accounts$/, async () => {
   await browser.back();
 
   await otherRandomAccount.waitForClickable({ timeout: 5000 });
-  await OtherRandomAccount.click();
+  await otherRandomAccount.click();
 
   account2 = pages.account.accountDetails;
   await browser.back();
