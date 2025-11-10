@@ -1,15 +1,25 @@
 import { Given } from "@wdio/cucumber-framework";
-
-import LoginPage from '../pageobjects/login.page.js';
-import statusPage from "../pageobjects/status.page.js";
-
-
-const pages = {
-  login: LoginPage,
-  status: statusPage
-};
-
+import pages from "../../pages";
 
 Given(/^I am on the (\w+) page$/, async (page) => {
   await pages[page].open();
+});
+
+Given(
+  /^I am on the (\w+) page with account id (\w+)$/,
+  async (page, accountId) => {
+    await pages[page].openAccountActivity(accountId);
+  }
+);
+
+Then(/^I should see a text saying (.*)$/, async (message) => {
+  if (message == "Error!") {
+    // invalid username or password
+    await expect($(".title")).toBeExisting();
+    await expect($(".title")).toHaveTextContaining(message);
+  } else {
+    // valid username or password
+    await expect($(".title")).toBeExisting();
+    await expect($(".title")).toHaveTextContaining(message);
+  }
 });

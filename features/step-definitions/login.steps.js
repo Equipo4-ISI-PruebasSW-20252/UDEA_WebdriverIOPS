@@ -1,35 +1,17 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
-
-import LoginPage from '../pageobjects/login.page.js';
-
-const pages = {
-  login: LoginPage,
-};
-
+import pages from "../../pages.js";
 
 //LOGIN
 When(/^I login with (\w+) and (.+)$/, async (username, password) => {
-  await LoginPage.login(username, password);
-});
-
-Then(/^I should see a text saying (.*)$/, async (message) => {
-  if (message == "Error!") {
-    // invalid username or password
-    await expect($('.title')).toBeExisting();
-    await expect($('.title')).toHaveTextContaining(message);
-  } else {
-    // valid username or password
-    await expect($('.title')).toBeExisting();
-    await expect($('.title')).toHaveTextContaining(message);
-  }
+  await pages.LoginPage.login(username, password);
 });
 
 //Disabled Log In button
 Then(/^the login button should be disabled$/, async () => {
-  const isEnabled = await LoginPage.btnSubmit.isEnabled();
+  const isEnabled = await pages.LoginPage.btnSubmit.isEnabled();
   await expect(isEnabled).toBe(false);
 });
 
 Given(/^I am logged in correctly$/, async () => {
-  await LoginPage.login('john', 'demo');
+  await pages.LoginPage.login("john", "demo");
 });
