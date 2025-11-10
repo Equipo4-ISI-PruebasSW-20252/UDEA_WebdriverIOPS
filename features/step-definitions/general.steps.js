@@ -1,5 +1,5 @@
 import { Given } from "@wdio/cucumber-framework";
-import pages from "../../pages";
+import pages from "../pageobjects/pages.js";
 
 Given(/^I am on the (\w+) page$/, async (page) => {
   await pages[page].open();

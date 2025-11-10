@@ -1,5 +1,5 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
-import pages from "../../pages.js";
+import pages from "../pageobjects/pages.js";
 
 //LOGIN
 When(/^I login with (\w+) and (.+)$/, async (username, password) => {

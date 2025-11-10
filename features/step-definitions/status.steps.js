@@ -1,6 +1,6 @@
 import { Then } from "@wdio/cucumber-framework";
 
-import pages from "../../pages.js";
+import pages from "../pageobjects/pages.js";
 
 let rightPanel = "";
 
