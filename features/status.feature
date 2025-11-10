@@ -17,4 +17,4 @@ Feature: ParaBank Status of accounts
   Scenario Outline: As a user I want to see more details about a specific account
     Given I am on the status page
     When I click on a random account
-    Then I should see a text saying "Account Details"
+    Then I should see a text saying Account Details
