@@ -9,10 +9,10 @@ When(/^I transfer (\d+) from the first account to the second account$/, async (a
   
     const fromOptions = await pages.transferFunds.fromAccountDropdown.$$('option');
     
-    await expect(fromOptions.length).toBeGreaterThanOrEqual(2);
+    await expect(fromOptions.length).toBeGreaterThanOrEqual(3);
     
-    const fromAccountText = await fromOptions[0].getText();
-    const toAccountText = await fromOptions[1].getText();
+    const fromAccountText = await fromOptions[1].getText();
+    const toAccountText = await fromOptions[2].getText();
 
     await pages.transferFunds.transfer(amount, fromAccountText, toAccountText);
 });
