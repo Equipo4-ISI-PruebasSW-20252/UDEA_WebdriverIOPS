@@ -21,3 +21,10 @@ When(/^I transfer (\d+) from the first account to the second account$/, async (a
 
     await pages.transferFunds.transfer(amount, fromAccountText, toAccountText);
 });
+
+Then(/^I should see the transfer confirmation message$/, async () => {
+    const confirmationHeader = await $('#rightPanel h1');
+
+    await confirmationHeader.waitForDisplayed({timeout: 5000});
+    await expect(confirmationHeader).toHaveTextContaining('Transfer Complete!');
+});
