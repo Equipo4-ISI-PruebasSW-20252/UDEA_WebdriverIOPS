@@ -23,14 +23,12 @@ When(/^I transfer (\d+) from the first account to the second account$/, async (a
 });
 
 Then(/^I should see the transfer confirmation message$/, async () => {
-    const successHeader = await $('#rightPanel h1.title'); 
-    
-    await browser.waitUntil(async () => {
-        const text = await successHeader.getText();
-        return text.includes('Transfer Complete!') && text !== '';
-    }, {
-        timeout: 10000,
-        timeoutMsg: 'El mensaje de confirmación "Transfer Complete!" (h1.title) no apareció o está vacío.'
+    const successHeader = await $("//h1[normalize-space()='Transfer Complete!']");
+
+    await successHeader.waitForDisplayed({ 
+        timeout: 10000, 
+        timeoutMsg: 'El encabezado de confirmación con el texto "Transfer Complete!" no apareció.' 
     });
-    await expect(successHeader).toHaveText('Transfer Complete!'); 
+
+    await expect(successHeader).toBeExisting(); 
 });
