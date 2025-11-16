@@ -8,7 +8,7 @@ Feature: Para Bank Login Feature
     When I login with <username> and <password>
     Then I should see a text saying <message>
 
-    Examples: 
-      | username          | password | message           |
-      | invalidUsenam   | password | Error!            |
-      | john        | demo | Accounts Overview |
+    Examples:
+      | username       | password | message           |
+      | invalidUsename | password | Error!            |
+      | john           | demo     | Accounts Overview |
