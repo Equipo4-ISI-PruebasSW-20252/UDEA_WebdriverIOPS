@@ -5,7 +5,7 @@ Feature: Bill Payment Service
     Then I should see a text saying Accounts Overview
 
   Scenario: View bill payment page
-    Given I am on the status page 
+    Given I am on the status page
     When I navigate to the bill payment page
     Then I should see a text saying Bill Payment Service
 
@@ -24,7 +24,45 @@ Feature: Bill Payment Service
     And I click the send payment button
     Then I should see the payment details with payee "<payeeName>"
 
-  Examples:
-    | payeeName | address | city | state | zipCode | phone | account | verifyAccount | amount | fromAccount | 
-    | EPM SAS   | Prado   | DIM  | Ant   | 1250    | 13522 | 16008   | 16008         | 2500   | 17340       | 
+    Examples:
+      | payeeName | address | city | state | zipCode | phone | account | verifyAccount | amount | fromAccount |
+      | EPM SAS   | Prado   | DIM  | Ant   | 1250    | 13522 | 16008   | 16008         | 2500   | 14898       |
 
+  Scenario Outline: Attempt bill payment with mismatched account numbers
+    Given I navigate to the bill payment page
+    When I enter payee name "<payeeName>"
+    And I enter address "<address>"
+    And I enter city "<city>"
+    And I enter state "<state>"
+    And I enter zip code "<zipCode>"
+    And I enter phone number "<phone>"
+    And I enter account number "<account>"
+    And I enter verify account number "<wrongAccount>"
+    And I enter payment amount "<amount>"
+    And I select account "<fromAccount>"
+    And I click the send payment button
+    Then I should see an error message about account mismatch
+
+    Examples:
+      | payeeName | address | city | state | zipCode | phone | account | wrongAccount | amount | fromAccount |
+      | FailComp  | Prado   | DIM  | Ant   | 1250    | 13522 | 12345   | 99999        | 2500   | 14898       |
+
+
+  Scenario Outline: Validate insufficient money for bill payment
+    Given I navigate to the bill payment page
+    When I enter payee name "<payeeName>"
+    And I enter address "<address>"
+    And I enter city "<city>"
+    And I enter state "<state>"
+    And I enter zip code "<zipCode>"
+    And I enter phone number "<phone>"
+    And I enter account number "<account>"
+    And I enter verify account number "<wrongAccount>"
+    And I enter payment amount "<amount>"
+    And I select account "<fromAccount>"
+    And I click the send payment button
+    Then I should see an error message about insufficient funds for payment
+
+    Examples:
+      | payeeName | address | city | state | zipCode | phone | account | verifyAccount | amount   | fromAccount |
+      | FailComp  | Prado   | DIM  | Ant   | 1250    | 13522 | 12345   | 16008         | 25582200 | 14898       |

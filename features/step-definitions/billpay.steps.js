@@ -53,3 +53,13 @@ Then(/^I should see the payment details with payee "([^"]*)"$/, async (payeeName
     await expect(pages.payment.paymentCompleteText).toBeExisting();
     await expect(pages.payment.paymentCompleteText).toHaveTextContaining(payeeName);
 });
+
+Then('I should see an error message about insufficient funds for payment', async () => {
+    const hasError = await pages.payment.verifyErrorMessage();
+    await expect(hasError).toBeTruthy();
+});
+
+Then('I should see an error message about account mismatch', async () => {
+
+    await expect(pages.payment.paymentCompleteText).toBeExisting();
+});

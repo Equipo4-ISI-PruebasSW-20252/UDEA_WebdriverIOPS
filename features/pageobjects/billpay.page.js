@@ -57,7 +57,7 @@ class BillPayPage extends Page {
         return $("//h1[normalize-space()='Bill Payment Complete']");
     }
 
-    get paymentCompleteText(){
+    get paymentCompleteText() {
         return $("//p[contains(text(),'Bill Payment to')]");
     }
 
@@ -75,6 +75,10 @@ class BillPayPage extends Page {
 
     async enterState(state) {
         await this.inputState.setValue(state);
+    }
+
+    get accountMismatchError() {
+        return $("//span[@id='validationModel-verifyAccount-mismatch']");
     }
 
     async enterZipCode(zipCode) {
@@ -104,7 +108,19 @@ class BillPayPage extends Page {
     async clickSendPaymentBtn() {
         await this.btnSendPayment.click();
     }
+    get errorMessage() {
+        return $('.error');
+    }
 
+    async verifyErrorMessage() {
+        await this.errorMessage.waitForDisplayed({ timeout: 5000 });
+        return await this.errorMessage.isDisplayed();
+    }
+
+    async verifyAccountMismatchError() {
+        await this.accountMismatchError.waitForDisplayed({ timeout: 5000 });
+        return await this.accountMismatchError.isDisplayed();
+    }
 
 
     open() {
