@@ -11,3 +11,7 @@ Then(/^the login button should be disabled$/, async () => {
   const isEnabled = await pages.login.btnSubmit.isEnabled();
   await expect(isEnabled).toBe(false);
 });
+
+Then(/^I should see the username and the password input$/, async () => {
+  await expect(pages.login.inputUsername).toBeExisting();
+});

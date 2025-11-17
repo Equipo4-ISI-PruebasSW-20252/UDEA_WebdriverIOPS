@@ -1,4 +1,9 @@
 Feature: Para Bank Login Feature
+
+  Scenario: As a user, I want to watch username and password input in the login page
+    Given I am on the login page
+    Then I should see the username and the password input
+
   Scenario: Login button should be disabled when fields are empty
     Given I am on the login page
     Then the login button should be disabled
@@ -8,7 +13,7 @@ Feature: Para Bank Login Feature
     When I login with <username> and <password>
     Then I should see a text saying <message>
 
-    Examples: 
-      | username          | password | message           |
-      | invalidUsenam   | password | Error!            |
-      | john        | demo | Accounts Overview |
+    Examples:
+      | username      | password | message           |
+      | invalidUsenam | password | Error!            |
+      | john          | demo     | Accounts Overview |
