@@ -30,5 +30,6 @@ Then(/^I should see a loan confirmation message saying "([^"]*)"$/, async (messa
 });
 
 Then(/^the loan status should be "([^"]*)"$/, async (expectedStatus) => {
-    await expect(pages.loan.loanStatus).toHaveText(expectedStatus);
+    const actualStatus = await pages.loan.getLoanStatus();
+    await expect(actualStatus).toEqual(expectedStatus); 
 });
