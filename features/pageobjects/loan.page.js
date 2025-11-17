@@ -35,7 +35,10 @@ class LoanPage extends Page {
     }
 
     async getLoanStatus() {
-        await this.loanStatus.waitForDisplayed({ timeout: 10000 });
+        await this.loanStatus.waitForDisplayed({ timeout: 15000, 
+            timeoutMsg: "El estado del préstamo (loanStatus) no se mostró en la página."
+        }); 
+        await browser.pause(500);
         return await this.loanStatus.getText();
     }
 
