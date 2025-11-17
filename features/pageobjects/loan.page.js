@@ -22,7 +22,7 @@ class LoanPage extends Page {
     }
 
     get loanStatus() {
-        return $("#loanStatus");
+        return $("//tr[./td[contains(., 'Loan Status:')]]/td[2]/*[@id='loanStatus']"); 
     }
 
     async requestLoan(amount, downPayment) {
