@@ -12,6 +12,8 @@ Then(/^the login button should be disabled$/, async () => {
   await expect(isEnabled).toBe(false);
 });
 
+//Inputs de login existen
 Then(/^I should see the username and the password input$/, async () => {
   await expect(pages.login.inputUsername).toBeExisting();
+  await expect(pages.login.inputPassword).toBeExisting();
 });

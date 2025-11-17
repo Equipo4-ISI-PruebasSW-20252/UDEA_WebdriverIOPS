@@ -14,6 +14,6 @@ Feature: Para Bank Login Feature
     Then I should see a text saying <message>
 
     Examples:
-      | username      | password | message           |
-      | invalidUsenam | password | Error!            |
-      | john          | demo     | Accounts Overview |
+      | username                | password                   | message           |
+      | cualquierUsuario1007458 | cualquierPassword100756324 | Error!            |
+      | john                    | demo                       | Accounts Overview |
