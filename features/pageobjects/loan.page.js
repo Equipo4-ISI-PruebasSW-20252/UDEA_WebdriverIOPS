@@ -22,7 +22,7 @@ class LoanPage extends Page {
     }
 
     get loanStatus() {
-        return $("//span[@id='loanStatus']");
+        return $("//td[text()='Loan Status:']/following-sibling::td");
     }
 
     async requestLoan(amount, downPayment) {
@@ -35,7 +35,7 @@ class LoanPage extends Page {
     }
 
     async getLoanStatus() {
-        await this.loanStatus.waitForDisplayed({ timeout: 15000, 
+        await this.loanStatus.waitForDisplayed({ timeout: 20000, 
             timeoutMsg: "El estado del préstamo (loanStatus) no se mostró en la página."
         }); 
         await browser.pause(500);
