@@ -22,7 +22,7 @@ class LoanPage extends Page {
     }
 
     get loanStatus() {
-        return $("//td[text()='Loan Status:']/following-sibling::td");
+        return $("#loanStatus");
     }
 
     async requestLoan(amount, downPayment) {
