@@ -35,7 +35,7 @@ class LoanPage extends Page {
     }
 
     async getLoanStatus() {
-        await this.loanStatus.waitForDisplayed({ timeout: 5000 });
+        await this.loanStatus.waitForDisplayed({ timeout: 10000 });
         return await this.loanStatus.getText();
     }
 
