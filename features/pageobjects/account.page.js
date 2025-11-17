@@ -5,7 +5,7 @@ import Page from "./page.js";
  */
 class AccountPage extends Page {
   /**
-   * define selectors using getter methods
+   * define selectors using getter methods add
    */
 
   get title() {
