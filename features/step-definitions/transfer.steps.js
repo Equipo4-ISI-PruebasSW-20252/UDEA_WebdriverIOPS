@@ -32,3 +32,12 @@ Then(/^I should see the transfer confirmation message$/, async () => {
 
     await expect(successHeader).toBeExisting(); 
 });
+
+Then(/^I should see the transfer failure message$/, async () => {
+    const expectedErrorText = 'An internal error has occurred and has been logged.'; 
+    
+    await expect(pages.transfer.transferErrorText).toBeExisting();
+    await expect(pages.transfer.transferErrorText).toHaveText(
+        expect.stringContaining(expectedErrorText)
+    );
+});
