@@ -9,3 +9,8 @@ Feature: ParaBank Fund Transfer Feature
     When I navigate to the Transfer Funds page
     And I transfer 100 from the first account to the second account
     Then I should see the transfer confirmation message
+
+  Scenario: Failed transfer due to insufficient funds
+    When I navigate to the Transfer Funds page  
+    And I transfer 999999 from the first account to the second account
+    Then I should see the transfer failure message
