@@ -35,7 +35,7 @@ Then(/^I should see the transfer confirmation message$/, async () => {
 
 Then(/^I should see the transfer failure message$/, async () => {
     const expectedErrorText = 'An internal error has occurred and has been logged.';
-   
+    
     await expect(pages.transferFunds.transferErrorText).toBeExisting(); 
     await expect(pages.transferFunds.transferErrorText).toHaveText(
         expect.stringContaining(expectedErrorText)
