@@ -34,15 +34,15 @@ Then(/^I should see the transfer confirmation message$/, async () => {
 });
 
 Then(/^I should see the transfer failure message$/, async () => {
-    const expectedErrorText = 'An internal error has occurred and has been logged.'; 
+    const expectedDetailText = 'An internal error has occurred and has been logged.';
     
-    await pages.transferFunds.transferErrorText.waitForDisplayed({ 
-        timeout: 20000, 
-        timeoutMsg: 'El mensaje de error de transferencia no se mostró.' 
+    await pages.transferFunds.errorHeader.waitForDisplayed({ 
+        timeout: 10000, 
+        timeoutMsg: 'El encabezado "Error!" no apareció en la página de transferencia.' 
     });
 
     await expect(pages.transferFunds.transferErrorText).toBeExisting();
     await expect(pages.transferFunds.transferErrorText).toHaveText(
-        expect.stringContaining(expectedErrorText)
+        expect.stringContaining(expectedDetailText)
     );
 });
