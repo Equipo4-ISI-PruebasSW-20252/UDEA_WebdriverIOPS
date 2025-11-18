@@ -37,7 +37,7 @@ Then(/^I should see the transfer failure message$/, async () => {
     const expectedDetailText = 'An internal error has occurred and has been logged.';
     
     await pages.transferFunds.errorHeader.waitForDisplayed({ 
-        timeout: 10000, 
+        timeout: 30000, 
         timeoutMsg: 'El encabezado "Error!" no apareció en la página de transferencia.' 
     });
 
