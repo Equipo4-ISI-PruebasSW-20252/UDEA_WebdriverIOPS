@@ -25,6 +25,10 @@ class TransferFundsPage extends Page {
         return $("//h1[normalize-space()='Transfer Complete!']");
     }
 
+    get transferErrorText() {
+    return $("//div[@id='showError']/p[@class='error']"); 
+    }
+
     async openTransferPage() {
         await this.transferFundsLink.click();
         // Asegurarse de que el formulario esté cargado
