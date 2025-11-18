@@ -29,6 +29,14 @@ class TransferFundsPage extends Page {
     return $("//div[@id='showError']/p[@class='error']"); 
     }
 
+    get errorHeader() {
+        return $("//div[@id='showError']/h1[normalize-space()='Error!']");
+    }
+
+    get transferErrorText() {
+        return $("//div[@id='showError']/p[@class='error']"); 
+    }
+
     async openTransferPage() {
         await this.transferFundsLink.click();
         // Asegurarse de que el formulario esté cargado
